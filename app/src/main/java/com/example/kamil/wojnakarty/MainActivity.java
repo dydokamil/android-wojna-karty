@@ -19,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
         final Button tura_button = (Button) findViewById(R.id.button);
 
         TaliaKart taliaKart = new TaliaKart();
+        Rozdanie rozdanie = taliaKart.rozdaj();
+
 
         assert tura_button != null;
         tura_button.setOnClickListener(new View.OnClickListener() {

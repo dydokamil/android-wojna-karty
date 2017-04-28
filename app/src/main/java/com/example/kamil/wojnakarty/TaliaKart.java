@@ -3,6 +3,8 @@ package com.example.kamil.wojnakarty;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.PriorityQueue;
+import java.util.Queue;
 
 /**
  * Created by kamil on 28.04.17.
@@ -29,9 +31,19 @@ public class TaliaKart {
         Collections.shuffle(this.talia_kart);
     }
 
-    public TaliaKart[] rozdaj() {
-        int rozmiar = this.talia_kart.size();
-        TaliaKart gracz1 = new TaliaKart()
+    public Rozdanie rozdaj() {
+        Queue<Karta> karty_gracz1 = new PriorityQueue<Karta>();
+
+        for (int i = 0; i < this.talia_kart.size() / 2; i++) {
+            karty_gracz1.add(this.talia_kart.get(i));
+        }
+
+        Queue<Karta> karty_gracz2 = new PriorityQueue<Karta>();
+
+        for (int i = this.talia_kart.size() / 2; i < this.talia_kart.size(); i++) {
+            karty_gracz2.add(this.talia_kart.get(i));
+        }
+        return new Rozdanie(karty_gracz1, karty_gracz2);
     }
 
     public ArrayList<Karta> getTalia_kart() {
