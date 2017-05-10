@@ -6,6 +6,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -19,15 +21,16 @@ public class MainActivity extends AppCompatActivity {
         final Button tura_button = (Button) findViewById(R.id.button);
 
         TaliaKart taliaKart = new TaliaKart();
-        Rozdanie rozdanie = taliaKart.rozdaj();
-
+        ArrayList<TaliaKart> rozdanie = taliaKart.rozdaj();
+        final TaliaKart talia_gracz1 = rozdanie.get(0);
+        TaliaKart talia_gracz2 = rozdanie.get(1);
 
         assert tura_button != null;
         tura_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 assert wygrany_textview != null;
-                wygrany_textview.setText("TEST");
+                wygrany_textview.setText(talia_gracz1.getTalia_kart().get(0).toString());
             }
         });
 

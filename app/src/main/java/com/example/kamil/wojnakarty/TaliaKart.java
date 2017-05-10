@@ -1,8 +1,10 @@
 package com.example.kamil.wojnakarty;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Deque;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
@@ -27,23 +29,31 @@ public class TaliaKart {
         tasuj();
     }
 
+    public TaliaKart(ArrayList<Karta> karty) {
+        talia_kart = karty;
+    }
+
     public void tasuj() {
         Collections.shuffle(this.talia_kart);
     }
 
-    public Rozdanie rozdaj() {
-        Queue<Karta> karty_gracz1 = new PriorityQueue<Karta>();
-
+    public ArrayList<TaliaKart> rozdaj() {
+        ArrayList<Karta> gracz1 = new ArrayList<>();
+        ArrayList<Karta> gracz2 = new ArrayList<>();
         for (int i = 0; i < this.talia_kart.size() / 2; i++) {
-            karty_gracz1.add(this.talia_kart.get(i));
+            gracz1.add(this.getTalia_kart().get(i));
         }
-
-        Queue<Karta> karty_gracz2 = new PriorityQueue<Karta>();
-
         for (int i = this.talia_kart.size() / 2; i < this.talia_kart.size(); i++) {
-            karty_gracz2.add(this.talia_kart.get(i));
+            gracz2.add(this.getTalia_kart().get(i));
         }
-        return new Rozdanie(karty_gracz1, karty_gracz2);
+        TaliaKart talia_gracz1 = new TaliaKart(gracz1);
+        TaliaKart talia_gracz2 = new TaliaKart(gracz2);
+
+        ArrayList<TaliaKart> rozdanie = new ArrayList<>();
+        rozdanie.add(talia_gracz1);
+        rozdanie.add(talia_gracz2);
+
+        return rozdanie;
     }
 
     public ArrayList<Karta> getTalia_kart() {

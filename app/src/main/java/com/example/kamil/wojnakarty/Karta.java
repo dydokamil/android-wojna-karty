@@ -12,4 +12,9 @@ public class Karta {
         this.figura = figura;
         this.kolor = kolor;
     }
+
+    @Override
+    public String toString() {
+        return "" + figura + " " + kolor;
+    }
 }

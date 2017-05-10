@@ -1,5 +1,7 @@
 package com.example.kamil.wojnakarty;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.Queue;
 
 /**
@@ -7,11 +9,11 @@ import java.util.Queue;
  */
 
 public class Rozdanie {
-    public Rozdanie(Queue<Karta> karty_gracz1, Queue<Karta> karty_gracz2) {
+    public Rozdanie(Deque<Karta> karty_gracz1, Deque<Karta> karty_gracz2) {
         this.karty_gracz1 = karty_gracz1;
         this.karty_gracz2 = karty_gracz2;
     }
 
-    public Queue<Karta> karty_gracz1;
-    public Queue<Karta> karty_gracz2;
+    public Deque karty_gracz1;
+    public Deque karty_gracz2;
 }
