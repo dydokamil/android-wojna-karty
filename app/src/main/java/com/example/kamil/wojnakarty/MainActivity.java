@@ -8,6 +8,9 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import static com.example.kamil.wojnakarty.TaliaKart.tasuj;
+import static com.example.kamil.wojnakarty.TaliaKart.usun_wojne;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -22,8 +25,10 @@ public class MainActivity extends AppCompatActivity {
 
         TaliaKart taliaKart = new TaliaKart();
         ArrayList<TaliaKart> rozdanie = taliaKart.rozdaj();
-        final TaliaKart talia_gracz1 = rozdanie.get(0);
+        TaliaKart talia_gracz1 = rozdanie.get(0);
         TaliaKart talia_gracz2 = rozdanie.get(1);
+
+        usun_wojne(talia_gracz1, talia_gracz2);
 
         assert tura_button != null;
         tura_button.setOnClickListener(new View.OnClickListener() {

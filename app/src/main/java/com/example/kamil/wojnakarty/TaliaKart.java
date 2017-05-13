@@ -37,6 +37,32 @@ public class TaliaKart {
         Collections.shuffle(this.talia_kart);
     }
 
+    public static void usun_wojne(TaliaKart t1, TaliaKart t2) {
+        boolean wojna = false;
+
+        if (t1.talia_length() >= t2.talia_length()) {
+            for (int i = 0; i < t2.talia_length(); i++) {
+                if (t1.getTalia_kart().get(i) == t2.getTalia_kart().get(i)) {
+                    wojna = true;
+                    break;
+                }
+            }
+        } else {
+            for (int i = 0; i < t1.talia_length(); i++) {
+                if (t1.getTalia_kart().get(i) == t2.getTalia_kart().get(i)) {
+                    wojna = true;
+                    break;
+                }
+            }
+        }
+
+        if (wojna) {
+            t1.tasuj();
+            t2.tasuj();
+            usun_wojne(t1, t2);
+        }
+    }
+
     public ArrayList<TaliaKart> rozdaj() {
         ArrayList<Karta> gracz1 = new ArrayList<>();
         ArrayList<Karta> gracz2 = new ArrayList<>();
@@ -58,6 +84,10 @@ public class TaliaKart {
 
     public ArrayList<Karta> getTalia_kart() {
         return talia_kart;
+    }
+
+    public int talia_length() {
+        return this.talia_kart.size();
     }
 
 }
