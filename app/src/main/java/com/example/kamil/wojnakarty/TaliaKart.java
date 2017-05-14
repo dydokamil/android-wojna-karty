@@ -7,6 +7,9 @@ import java.util.Collections;
 import java.util.Deque;
 import java.util.PriorityQueue;
 import java.util.Queue;
+import java.util.StringTokenizer;
+
+import static com.example.kamil.wojnakarty.Karta.wygrany_k1;
 
 /**
  * Created by kamil on 28.04.17.
@@ -15,18 +18,21 @@ import java.util.Queue;
 public class TaliaKart {
     private ArrayList<Karta> talia_kart;
 
-    public TaliaKart() {
-        final ArrayList<String> figury = new ArrayList<>(Arrays.asList("Trefl", "Pik", "Karo", "Kier"));
-        final ArrayList<String> numery = new ArrayList<>(Arrays.asList("2", "3", "4", "5", "6",
-                "7", "8", "9", "10", "J", "Q", "K", "A"));
+    public TaliaKart(boolean init) {
+        this.talia_kart = new ArrayList<>();
+        if (init) {
+            final ArrayList<String> figury = new ArrayList<>(Arrays.asList("Trefl", "Pik", "Karo", "Kier"));
+            final ArrayList<String> numery = new ArrayList<>(Arrays.asList("2", "3", "4", "5", "6",
+                    "7", "8", "9", "10", "J", "Q", "K", "A"));
 
-        talia_kart = new ArrayList<Karta>();
-        for (int i = 0; i < figury.size(); i++) {
-            for (int j = 0; j < numery.size(); j++) {
-                this.talia_kart.add(new Karta(figury.get(i), numery.get(j)));
+            talia_kart = new ArrayList<Karta>();
+            for (int i = 0; i < figury.size(); i++) {
+                for (int j = 0; j < numery.size(); j++) {
+                    this.talia_kart.add(new Karta(figury.get(i), numery.get(j)));
+                }
             }
+            tasuj();
         }
-        tasuj();
     }
 
     public TaliaKart(ArrayList<Karta> karty) {
@@ -35,32 +41,6 @@ public class TaliaKart {
 
     public void tasuj() {
         Collections.shuffle(this.talia_kart);
-    }
-
-    public static void usun_wojne(TaliaKart t1, TaliaKart t2) {
-        boolean wojna = false;
-
-        if (t1.talia_length() >= t2.talia_length()) {
-            for (int i = 0; i < t2.talia_length(); i++) {
-                if (t1.getTalia_kart().get(i) == t2.getTalia_kart().get(i)) {
-                    wojna = true;
-                    break;
-                }
-            }
-        } else {
-            for (int i = 0; i < t1.talia_length(); i++) {
-                if (t1.getTalia_kart().get(i) == t2.getTalia_kart().get(i)) {
-                    wojna = true;
-                    break;
-                }
-            }
-        }
-
-        if (wojna) {
-            t1.tasuj();
-            t2.tasuj();
-            usun_wojne(t1, t2);
-        }
     }
 
     public ArrayList<TaliaKart> rozdaj() {
@@ -82,6 +62,10 @@ public class TaliaKart {
         return rozdanie;
     }
 
+    public void add_card(Karta k) {
+        this.talia_kart.add(k);
+    }
+
     public ArrayList<Karta> getTalia_kart() {
         return talia_kart;
     }
@@ -90,4 +74,11 @@ public class TaliaKart {
         return this.talia_kart.size();
     }
 
+    public Karta zabierz_karte() {
+        if (talia_kart.size() > 0) {
+            return this.talia_kart.remove(0);
+        } else {
+            return null;
+        }
+    }
 }

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">WojnaKarty</string>
+    <string name="wygrany1">Rundę wygrywa gracz1</string>
+    <string name="wygrany2">Rundę wygrywa gracz2</string>
 </resources>
